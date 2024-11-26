@@ -12,10 +12,10 @@ sh:
   environment: 
     # ASPNETCORE_ENVIRONMENT: "dev"
     KUBE_DEPLOYMENT: "true"
-    xm__xmpro__Gateway__Name: "exampleprefix"
-    xm__xmpro__Gateway__ServerUrl: "https://ds.devupw2svz.xmpro.com/"
-    xm__xmpro__Gateway__CollectionId:  "7b894031-2e10-495c-acd1-6e582f0ae9fc"
-    xm__xmpro__Gateway__Secret: "vutdZlPhlGZUM+x2gTYMusQNK+7lAAZjkuAx/nbxw6Q="
+    xm__xmpro__Gateway__Name: ""
+    xm__xmpro__Gateway__ServerUrl: ""
+    xm__xmpro__Gateway__CollectionId:  ""
+    xm__xmpro__Gateway__Secret: ""
   labels: {}
   selectorLabels: {}
 
