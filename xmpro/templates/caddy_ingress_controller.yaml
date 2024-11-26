@@ -1,0 +1,80 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "xmpro.fullname" . }}-caddy
+  labels:
+    app: {{ include "xmpro.fullname" . }}-caddy
+    {{- include "xmpro.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.caddy.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ include "xmpro.fullname" . }}-caddy
+      {{- include "xmpro.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.caddy.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        app: {{ include "xmpro.fullname" . }}-caddy
+        {{- include "xmpro.labels" . | nindent 8 }}
+	{{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "xmpro.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: caddy
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.caddy.image.repository }}:{{ .Values.caddy.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.caddy.image.pullPolicy }}
+        #   command: ["/bin/sh"]
+        #   args: ["caddy", "reverse-proxy", "--from", "{{ .Values.ai.url }}", "--to", "xmpro-ai:5000"]
+          ports:
+            - name: https
+              containerPort: 443
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: caddy-config
+              mountPath: /etc/caddy
+            - name: caddy-data
+              mountPath: /data              
+          {{- with .Values.caddy.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      volumes:
+        - name: caddy-config
+          configMap:
+            name: caddy-config
+        - name: caddy-data
+          persistentVolumeClaim:
+            claimName: caddy-pvc
+      {{- with .Values.caddy.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

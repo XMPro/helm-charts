@@ -1,0 +1,17 @@
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "xmpro.fullname" . }}-ds
+  labels:
+    {{ include "xmpro.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5000
+      targetPort: 5000
+      protocol: TCP
+      name: dotnet
+  selector:
+    app: {{ include "xmpro.fullname" . }}-ds

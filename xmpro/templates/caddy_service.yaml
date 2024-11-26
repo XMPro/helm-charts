@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "xmpro.fullname" . }}-caddy
+  labels:
+    {{ include "xmpro.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.caddy.service.type }}
+  ports:
+    - port: {{ .Values.caddy.service.port }}
+      targetPort: https
+      protocol: TCP
+      name: https    # This should be 'https' since you're using port 443
+  selector:
+    app: {{ include "xmpro.fullname" . }}-caddy
