@@ -3,9 +3,9 @@ entries:
   xmpro:
   - apiVersion: v2
     appVersion: 4.4.17
-    created: "2024-11-26T11:08:26.314246503Z"
+    created: "2024-11-26T11:10:55.548963942Z"
     description: A Helm chart for Kubernetes
-    digest: fd0509f50af538ee4ba6a0ea99c043d7cf934b0b6d1d88190511d733e3cb434d
+    digest: 5b857cc1f10d3a75ab6fabfb8603935d67925ddecdd14edbbbe27e8d0779e7b5
     name: xmpro
     type: application
     urls:
@@ -14,12 +14,12 @@ entries:
   xmpro-stream-host:
   - apiVersion: v2
     appVersion: 4.4.17
-    created: "2024-11-26T11:08:26.314861645Z"
+    created: "2024-11-26T11:10:55.549556735Z"
     description: A Helm chart for Kubernetes
-    digest: d8080aad74c66b623b2e44f3cea2c1a3c91cdc21e99f5271c90129f6146b0f40
+    digest: 6f60be04cc8526f29982822314649a43495292f334d9131ab69f7cd0760592b7
     name: xmpro-stream-host
     type: application
     urls:
     - https://.github.io/xmpro-stream-host-4.4.17.tgz
     version: 4.4.17
-generated: "2024-11-26T11:08:26.31320603Z"
+generated: "2024-11-26T11:10:55.547917955Z"
