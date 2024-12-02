@@ -1,25 +1,26 @@
-# XMPRO Stream Host Helm Chart
+# XMPro Stream Host Helm Chart
 
-This Helm chart deploys XMPRO Stream Host on a Kubernetes cluster.
+This Helm chart deploys XMPro Stream Host on a Kubernetes cluster.
 
 ## Prerequisites
 
 - Kubernetes 1.16+
 - Helm 3.0+
 - kubectl configured to communicate with your cluster
-- Access to XMPRO Azure Container Registry (xmpro.azurecr.io)
+- Access to XMPro Azure Container Registry (xmpro.azurecr.io)
 
 ## Installing the Chart
 
 To install the chart with the release name `my-release`:
 
 ```bash
-helm install my-release .
+helm repo add xmpro https://xmpro.github.io/helm-charts/
+helm install my-release xmpro/stream-host
 ```
 
 ## Configuration
 
-The following table lists the configurable parameters of the XMPRO Stream Host chart and their default values.
+The following table lists the configurable parameters of the XMPro Stream Host chart and their default values.
 
 | Parameter | Description | Default |
 |-----------|-------------|---------|
@@ -28,10 +29,10 @@ The following table lists the configurable parameters of the XMPRO Stream Host c
 | `sh.image.tag` | Stream Host image tag | `latest` |
 | `sh.image.pullPolicy` | Image pull policy | `Always` |
 | `sh.environment.KUBE_DEPLOYMENT` | Enable Kubernetes deployment mode | `"true"` |
-| `sh.environment.xm__xmpro__Gateway__Name` | XMPRO Gateway Name | `""` |
-| `sh.environment.xm__xmpro__Gateway__ServerUrl` | XMPRO Gateway Server URL | `""` |
-| `sh.environment.xm__xmpro__Gateway__CollectionId` | XMPRO Gateway Collection ID | `""` |
-| `sh.environment.xm__xmpro__Gateway__Secret` | XMPRO Gateway Secret | `""` |
+| `sh.environment.xm__xmpro__Gateway__Name` | XMPro Gateway Name | `""` |
+| `sh.environment.xm__xmpro__Gateway__ServerUrl` | XMPro Gateway Server URL | `""` |
+| `sh.environment.xm__xmpro__Gateway__CollectionId` | XMPro Gateway Collection ID | `""` |
+| `sh.environment.xm__xmpro__Gateway__Secret` | XMPro Gateway Secret | `""` |
 | `sh.podAnnotations` | Additional pod annotations | `{}` |
 | `sh.labels` | Additional labels for the deployment | `{}` |
 | `sh.selectorLabels` | Additional selector labels | `{}` |
@@ -51,7 +52,7 @@ sh:
   environment:
     KUBE_DEPLOYMENT: "true"
     xm__xmpro__Gateway__Name: "exampleprefix"
-    xm__xmpro__Gateway__ServerUrl: "https://ds.example.2svzxmpro.com/"
+    xm__xmpro__Gateway__ServerUrl: "https://ds.example.com/"
     xm__xmpro__Gateway__CollectionId: "exampleid"
     xm__xmpro__Gateway__Secret: "examplesecret"
   
@@ -63,10 +64,10 @@ sh:
 
 The following environment variables must be configured in your values.yaml:
 
-- `xm__xmpro__Gateway__Name`: The prefix used to identify your stream host
-- `xm__xmpro__Gateway__ServerUrl`: The URL of your XMPRO Data Stream Designer instance
-- `xm__xmpro__Gateway__CollectionId`: Your XMPRO collection ID
-- `xm__xmpro__Gateway__Secret`: Your XMPRO gateway secret
+- `xm__xmpro__Gateway__Name`: The prefix used to identify your stream-host
+- `xm__xmpro__Gateway__ServerUrl`: The URL of your XMPro Data Stream Designer instance
+- `xm__xmpro__Gateway__CollectionId`: Your XMPro collection ID
+- `xm__xmpro__Gateway__Secret`: Your XMPro collection secret
 
 ## Image Pull Secrets
 
@@ -114,5 +115,5 @@ Common issues:
 
 ## Support
 
-For support with the XMPRO Stream Host, please contact XMPRO support or refer to the XMPRO documentation.
+For support with the XMPro Stream Host, please contact XMPro support or refer to the XMPro documentation.
 
