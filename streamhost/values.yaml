@@ -1,6 +1,19 @@
 # Default values for xmpro.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
+# Required Values:
+# - sh.environment.xm__xmpro__Gateway__Name: The gateway name for the stream host
+# - sh.environment.xm__xmpro__Gateway__ServerUrl: The server URL for the gateway
+# - sh.environment.xm__xmpro__Gateway__CollectionId: The collection ID for the gateway
+# - sh.environment.xm__xmpro__Gateway__Secret: The secret for the gateway
+#
+# Production Configuration:
+# For production deployments, ensure:
+# - Image tag is set to a specific version
+# - Resource limits are configured
+# - Security context is enabled
+# - Health checks are configured
+
 sh:
   podAnnotations: {}
   replicaCount: 1
